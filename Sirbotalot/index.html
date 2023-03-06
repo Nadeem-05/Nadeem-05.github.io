@@ -1,1 +1,61 @@
-#Test
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+    <meta charset="UTF-8">
+    <title>Nadeem's Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
+    <style>
+      .gap-30 {
+				width:100%;
+				height:30px;
+			}
+      footer{text-align:center}
+      h1 {text-align: center;}
+      h4{text-align: center;}
+      h5 {text-align: center;}
+      p {text-align: -moz-left;}
+      div {text-align: center;
+            position: center}
+        body {
+            background-image: url("/assets/gif/matrix.gif");
+            background-size: 100%;
+            background-repeat: repeat-y;
+            background-attachment: fixed;
+            height: 100%;
+            width: 100%;
+        }
+        @media only screen and (max-width: 980px) {
+            html, body {
+               display: None;
+            }
+        }
+
+   </style>
+</head>
+
+<body>
+<main class="container">
+    <header>
+    <hgroup>
+            <h1>Nadeem</h1>
+            <h4>Engineering student</h4>
+        </hgroup>
+        <h5>This is a demo of my bot! Use >help to see its commands</h5>
+    </header>
+    <div>
+        <widgetbot id="test"
+    server="1054677759999352912"
+    channel="1082371567054487593"
+    width="1000px"
+    height="600px"
+    position = "center">
+
+        </widgetbot>
+        </div>
+<script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
+</main>
+
+</body>
