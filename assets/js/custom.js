@@ -1,41 +1,39 @@
-const canvas = document.getElementById('Matrix');
-const context = canvas.getContext('2d');
+// Initialising the canvas
+var canvas = document.querySelector('canvas'),
+    ctx = canvas.getContext('2d');
 
+// Setting the width and height of the canvas
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const nums = '0123456789';
+// Setting up the letters
+var letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ';
+letters = letters.split('');
 
-const alphabet = katakana + latin + nums;
+// Setting up the columns
+var fontSize = 10,
+    columns = canvas.width / fontSize;
 
-const fontSize = 16;
-const columns = canvas.width/fontSize;
-
-const rainDrops = [];
-
-for( let x = 0; x < columns; x++ ) {
-	rainDrops[x] = 1;
+// Setting up the drops
+var drops = [];
+for (var i = 0; i < columns; i++) {
+  drops[i] = 1;
 }
 
-const draw = () => {
-	context.fillStyle = 'rgba(0, 0, 0, 0.05)';
-	context.fillRect(0, 0, canvas.width, canvas.height);
+// Setting up the draw function
+function draw() {
+  ctx.fillStyle = 'rgba(0, 0, 0, .1)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  for (var i = 0; i < drops.length; i++) {
+    var text = letters[Math.floor(Math.random() * letters.length)];
+    ctx.fillStyle = '#0f0';
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+    drops[i]++;
+    if (drops[i] * fontSize > canvas.height && Math.random() > .95) {
+      drops[i] = 0;
+    }
+  }
+}
 
-	context.fillStyle = '#0F0';
-	context.font = fontSize + 'px monospace';
-
-	for(let i = 0; i < rainDrops.length; i++)
-	{
-		const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-		context.fillText(text, i*fontSize, rainDrops[i]*fontSize);
-
-		if(rainDrops[i]*fontSize > canvas.height && Math.random() > 0.975){
-			rainDrops[i] = 0;
-        }
-		rainDrops[i]++;
-	}
-};
-
-setInterval(draw, 30);
+// Loop the animation
+setInterval(draw, 33);
