@@ -1,18 +1,30 @@
-// Initialising the canvas
 var canvas = document.querySelector('canvas'),
-    ctx = canvas.getContext('2d');
+  ctx = canvas.getContext('2d');
+var body = document.body,
+  html = document.documentElement;
+//Modified to width dont mind the logging -Nad
+var height = Math.max(body.scrollHeight, body.offsetHeight,
+  html.clientHeight, html.scrollHeight, html.offsetHeight);
+var width = Math.max(
+  document.body.scrollWidth,
+  document.documentElement.scrollWidth,
+  document.body.offsetWidth,
+  document.documentElement.offsetWidth,
+  document.documentElement.clientWidth
+);
+console.log(height, width)
 
 // Setting the width and height of the canvas
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = width - 1;
+canvas.height = height;
 
 // Setting up the letters
-var letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ';
+var letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZアァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789';
 letters = letters.split('');
 
 // Setting up the columns
 var fontSize = 10,
-    columns = canvas.width / fontSize;
+  columns = canvas.width / fontSize;
 
 // Setting up the drops
 var drops = [];
@@ -22,7 +34,7 @@ for (var i = 0; i < columns; i++) {
 
 // Setting up the draw function
 function draw() {
-  ctx.fillStyle = 'rgba(0, 0, 0, .1)';
+  ctx.fillStyle = 'rgba(0, 0, 0, .05)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   for (var i = 0; i < drops.length; i++) {
     var text = letters[Math.floor(Math.random() * letters.length)];
@@ -34,6 +46,26 @@ function draw() {
     }
   }
 }
+window.addEventListener("resize", () => {
+  var body = document.body,
+    html = document.documentElement;
+  //Modified to width dont mind the logging -Nad
+  var height = Math.max(body.scrollHeight, body.offsetHeight,
+    html.clientHeight, html.scrollHeight, html.offsetHeight);
+  var width = Math.max(
+    document.body.scrollWidth,
+    document.documentElement.scrollWidth,
+    document.body.offsetWidth,
+    document.documentElement.offsetWidth,
+    document.documentElement.clientWidth
+  );
+  console.log(height, width)
+
+  // Setting the width and height of the canvas
+  canvas.width = width - 1;
+  canvas.height = height;
+});
+
 
 // Loop the animation
-setInterval(draw, 33);
+setInterval(draw, 35);
